@@ -9,9 +9,11 @@ import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fbatracker.model.UserAccount;
+import com.fbatracker.repository.UserAccountRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,6 +30,9 @@ public class UserAccountResource {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserAccountResource.class);
 	
+	@Autowired
+	UserAccountRepository repository;
+	
 	@GET
 	@Path("v1/useraccount/{username}")
 	@ApiOperation(value="Get a User Account resource. Version 1",response = UserAccount.class)
@@ -38,11 +43,7 @@ public class UserAccountResource {
 	public UserAccount getUserAccount(@ApiParam @PathParam("username")String username)
 	{
 		LOGGER.trace("getUserAccount username={}",username);
-		UserAccount userAccount = new UserAccount();
-		userAccount.setId(1);
-		userAccount.setUsername("YasinJa");
-		userAccount.setEmail("Yasin@email.com");
-		userAccount.setPassword("Password");
+		UserAccount userAccount = repository.findUserAccountByUsername(username);
 		return userAccount;
 	}
 }
