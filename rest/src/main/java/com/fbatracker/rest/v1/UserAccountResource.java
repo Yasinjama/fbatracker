@@ -76,15 +76,15 @@ public class UserAccountResource {
 	}
 	
 	@PUT
-	@Path("v1/useraccount")
+	@Path("v1/useraccount/{username}")
 	@ApiOperation(value = "Update User account resource. Version 1",response = UserAccount.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "User account updated"),
 			@ApiResponse(code = 404, message = "User account not found")
 	})
-	public UserAccount updateUserAccount(UserAccount userAccount)
+	public UserAccount updateUserAccount(@ApiParam @PathParam("username")String usernname,UserAccount userAccount)
 	{
-		UserAccount user = repository.findUserAccountByUsername(userAccount.getUsername());
+		UserAccount user = repository.findUserAccountByUsername(usernname);
 		if(user == null)
 		{
 			throw new WebApplicationException("User account not found",Response.Status.NOT_FOUND);
