@@ -37,7 +37,7 @@ public class JerseyConfig extends ResourceConfig {
 		config.setTitle("FBA Tracker swagger");
 		config.setVersion("v1");
 		config.setContact("Yasin Jama");
-		config.setSchemes(new String[] { "http", "https" });
+		config.setSchemes(new String[] { "https" });
 		config.setBasePath(this.apiPath);
 		config.setResourcePackage("com.fbatracker.rest.v1");
 		config.setPrettyPrint(true);
