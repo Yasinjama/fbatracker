@@ -6,6 +6,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -43,7 +44,7 @@ public class AuthenticationResource {
 			@ApiResponse(code = 200, message = "Authenticate successful"),
 			@ApiResponse(code = 403, message = "Authentication failed")
 	})
-	public UserAccount authenticate(@ApiParam @FormParam("username")String username, @ApiParam @FormParam("password")String password)
+	public UserAccount authenticate(@ApiParam @QueryParam("username")String username, @ApiParam @QueryParam("password")String password)
 	{
 		LOGGER.trace("authenticate username={}",username);
 		UserAccount userAccount = repository.findUserAccountByUsername(username);
