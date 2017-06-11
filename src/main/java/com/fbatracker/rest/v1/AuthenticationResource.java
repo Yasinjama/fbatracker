@@ -40,7 +40,7 @@ public class AuthenticationResource {
 	@ApiOperation(value = "Authenticate User. Version 1",response = UserAccount.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Authenticate successful"),
-			@ApiResponse(code = 400, message = "Authentication failed")
+			@ApiResponse(code = 403, message = "Authentication failed")
 	})
 	public UserAccount authenticate(@ApiParam @PathParam("username")String username, @ApiParam @PathParam("password")String password)
 	{

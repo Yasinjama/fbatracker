@@ -6,6 +6,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.fbatracker.rest.v1.AuthenticationResource;
 import com.fbatracker.rest.v1.CORSFilter;
 import com.fbatracker.rest.v1.UserAccountResource;
 
@@ -50,5 +51,6 @@ public class JerseyConfig extends ResourceConfig {
 
 		this.register(CORSFilter.class);
 		this.register(UserAccountResource.class);
+		this.register(AuthenticationResource.class);
 	}
 }
