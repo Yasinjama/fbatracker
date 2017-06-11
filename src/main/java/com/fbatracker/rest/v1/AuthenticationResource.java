@@ -1,6 +1,7 @@
 package com.fbatracker.rest.v1;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -42,7 +43,7 @@ public class AuthenticationResource {
 			@ApiResponse(code = 200, message = "Authenticate successful"),
 			@ApiResponse(code = 403, message = "Authentication failed")
 	})
-	public UserAccount authenticate(@ApiParam String username, @ApiParam String password)
+	public UserAccount authenticate(@ApiParam @FormParam("username")String username, @ApiParam @FormParam("password")String password)
 	{
 		LOGGER.trace("authenticate username={}",username);
 		UserAccount userAccount = repository.findUserAccountByUsername(username);
