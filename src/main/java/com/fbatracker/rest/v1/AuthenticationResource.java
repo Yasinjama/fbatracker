@@ -44,18 +44,20 @@ public class AuthenticationResource {
 	})
 	public UserAccount authenticate(@ApiParam @PathParam("username")String username, @ApiParam @PathParam("password")String password)
 	{
-		LOGGER.trace("getUserAccount username={}",username);
+		LOGGER.trace("authenticate username={}",username);
 		UserAccount userAccount = repository.findUserAccountByUsername(username);
 		if(userAccount == null)
 		{
+			LOGGER.error("Authentication failed with incorrect username");
 			throw new WebApplicationException("Authentication Failed",Response.Status.FORBIDDEN);
 		}
-		
-		if(!userAccount.getPassword().equals(password))
+		LOGGER.trace("User = {} found ",userAccount.getUsername());
+		if(!userAccount.getPassword().trim().equals(password.trim()))
 		{
+			LOGGER.error("Authentication failed with incorrect password");
 			throw new WebApplicationException("Authentication Failed",Response.Status.FORBIDDEN);
 		}
-		
+		LOGGER.trace("Successfully Authenticated user={}",userAccount.getUsername());
 		return userAccount;
 	}
 }
