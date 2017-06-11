@@ -49,7 +49,7 @@ public class JerseyConfig extends ResourceConfig {
 	
 	private void registerEndpoints() {
 
-		this.register(CORSFilter.class);
+//		this.register(CORSFilter.class);
 		this.register(UserAccountResource.class);
 		this.register(AuthenticationResource.class);
 	}
