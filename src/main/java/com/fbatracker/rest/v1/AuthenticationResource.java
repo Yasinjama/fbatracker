@@ -42,7 +42,7 @@ public class AuthenticationResource {
 			@ApiResponse(code = 200, message = "Authenticate successful"),
 			@ApiResponse(code = 403, message = "Authentication failed")
 	})
-	public UserAccount authenticate(@ApiParam @PathParam("username")String username, @ApiParam @PathParam("password")String password)
+	public UserAccount authenticate(@ApiParam String username, @ApiParam String password)
 	{
 		LOGGER.trace("authenticate username={}",username);
 		UserAccount userAccount = repository.findUserAccountByUsername(username);
@@ -52,7 +52,7 @@ public class AuthenticationResource {
 			throw new WebApplicationException("Authentication Failed",Response.Status.FORBIDDEN);
 		}
 		LOGGER.trace("User = {} found ",userAccount.getUsername());
-		if(!userAccount.getPassword().trim().equals(password.trim()))
+		if(!userAccount.getPassword().equals(password))
 		{
 			LOGGER.error("Authentication failed with incorrect password");
 			throw new WebApplicationException("Authentication Failed",Response.Status.FORBIDDEN);
