@@ -30,7 +30,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(value="User Account resource",produces = "application/json")
 public class AuthenticationResource {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserAccountResource.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationResource.class);
 	
 	@Autowired
 	UserAccountRepository repository;
